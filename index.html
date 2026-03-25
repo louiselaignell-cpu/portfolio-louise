@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Louise Laignel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6f3ef;
+      --surface:#ffffff;
+      --surface-2:#f1ece6;
+      --text:#22201d;
+      --muted:#6b655f;
+      --line:#ddd4cb;
+      --accent:#8b735d;
+      --shadow:0 16px 38px rgba(52,40,30,.08);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-md:14px;
+      --max:1140px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f8f5f1 0%,#f3eee8 100%);
+      line-height:1.7;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(92%,var(--max));margin:0 auto}
+
+    .topbar{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(246,243,239,.88);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(139,115,93,.10);
+    }
+
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:20px;padding:18px 0;
+    }
+
+    .logo{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.7rem;font-weight:700;letter-spacing:.4px;
+    }
+
+    .nav-links{
+      display:flex;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:.95rem;
+    }
+
+    .nav-links a:hover{color:var(--text)}
+
+    .hero{padding:72px 0 54px}
+    .hero-grid{
+      display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;
+    }
+
+    .hero-text{
+      padding:10px 0;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      border:1px solid var(--line);
+      color:var(--accent);
+      border-radius:999px;
+      padding:9px 14px;
+      font-size:.9rem;
+      font-weight:600;
+      margin-bottom:22px;
+      background:rgba(255,255,255,.55);
+    }
+
+    h1,h2,h3{
+      font-family:'Cormorant Garamond',serif;
+      line-height:1.1;
+      font-weight:600;
+    }
+
+    h1{
+      font-size:clamp(3rem,6vw,5.2rem);
+      margin-bottom:18px;
+    }
+
+    .hero-text p{
+      max-width:56ch;
+      color:var(--muted);
+      font-size:1.02rem;
+    }
+
+    .hero-actions{
+      display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:14px 22px;border-radius:999px;
+      font-weight:600;transition:.25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:var(--text);color:#fff;
+    }
+
+    .btn-primary:hover{transform:translateY(-2px)}
+
+    .btn-secondary{
+      background:transparent;
+      border-color:var(--line);
+      color:var(--text);
+    }
+
+    .btn-secondary:hover{background:#fff}
+
+    .hero-photo{
+      background:var(--surface);
+      border-radius:var(--radius-xl);
+      padding:18px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.7);
+    }
+
+    .hero-photo img{
+      width:100%;height:560px;object-fit:cover;
+      border-radius:22px;
+    }
+
+    .photo-caption{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:.92rem;
+      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    }
+
+    section{padding:26px 0 48px}
+
+    .section-heading{margin-bottom:22px}
+    .section-heading h2{
+      font-size:clamp(2.1rem,4vw,3.1rem);
+      margin-bottom:8px;
+    }
+    .section-heading p{color:var(--muted);max-width:64ch}
+
+    .card{
+      background:var(--surface);
+      border-radius:var(--radius-xl);
+      padding:32px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.72);
+    }
+
+    .about-grid{
+      display:grid;grid-template-columns:1.12fr .88fr;gap:24px;
+    }
+
+    .card p + p{margin-top:14px}
+
+    .side-notes{display:grid;gap:16px}
+    .note{
+      background:var(--surface-2);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:22px;
+    }
+    .note strong{
+      display:block;margin-bottom:8px;color:var(--accent);font-size:1rem;
+    }
+
+    .timeline{display:grid;gap:18px}
+    .timeline-item{
+      display:grid;grid-template-columns:120px 1fr;gap:18px;
+      align-items:start;
+      background:var(--surface);
+      border-radius:24px;
+      padding:26px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.72);
+    }
+
+    .timeline-date{font-weight:700;color:var(--accent);font-size:.95rem}
+    .timeline-item h3{font-size:1.45rem;margin-bottom:8px}
+    .timeline-item p{color:var(--muted)}
+
+    .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .tag{
+      padding:8px 12px;border-radius:999px;background:#faf8f5;
+      border:1px solid var(--line);font-size:.86rem;color:var(--muted)
+    }
+
+    .grid-3{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    }
+
+    .mini-card{
+      background:var(--surface);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.72);
+      transition:.25s ease;
+    }
+
+    .mini-card:hover{transform:translateY(-3px)}
+
+    .mini-card h3{
+      font-size:1.35rem;
+      margin-bottom:10px;
+    }
+
+    .mini-card p{color:var(--muted)}
+
+    .mini-icon{
+      width:50px;height:50px;border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--surface-2);
+      margin-bottom:16px;font-size:1.25rem;
+    }
+
+    .quote{
+      background:linear-gradient(135deg,#ffffff 0%,#f1ece6 100%);
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:42px 24px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+
+    .quote p{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.8rem,3vw,2.8rem);
+      max-width:24ch;
+      margin:0 auto 10px;
+    }
+
+    .quote span{color:var(--muted)}
+
+    footer{
+      text-align:center;padding:18px 0 44px;color:var(--muted);font-size:.94rem;
+    }
+
+    @media (max-width:980px){
+      .hero-grid,.about-grid,.grid-3{grid-template-columns:1fr}
+      .timeline-item{grid-template-columns:1fr}
+      .hero-photo img{height:420px}
+    }
+
+    @media (max-width:640px){
+      .nav{flex-direction:column;align-items:flex-start}
+      .hero{padding-top:44px}
+      .card,.mini-card,.timeline-item{padding:22px}
+      .hero-photo img{height:340px}
+      h1{font-size:2.8rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#accueil" class="logo">Louise Laignel</a>
+      <nav class="nav-links">
+        <a href="#apropos">À propos</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#experiences">Expériences</a>
+        <a href="#competences">Compétences</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow">Communication digitale • Tourisme • Création de contenu</div>
+          <h1>Bonjour, moi c’est Louise.</h1>
+          <p>
+            Étudiante en mastère tourisme à Grand Sud Formation, je construis un parcours entre communication,
+            réseaux sociaux, création de contenu et gestion de projet. Je recherche une alternance dans un univers
+            stimulant, avec une vraie place pour la créativité, l’humain et l’envie d’apprendre.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Me contacter</a>
+            <a href="#apropos" class="btn btn-secondary">Découvrir mon profil</a>
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <img src="images/IMG_5046 copie.jpg" alt="Photo de Louise">
+          <div class="photo-caption">
+            <span>Toulouse • Communication • Tourisme</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Qui suis-je ?</h2>
+          <p>Un profil à la fois vivant, impliqué et créatif, avec une vraie sensibilité pour l’humain et l’image.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card">
+            <p>
+              Je suis quelqu’un de dynamique, drôle, organisée et profondément humaine. On dit souvent de moi que je suis très sensible,
+              et aujourd’hui je considère cette sensibilité comme une vraie force. Elle me pousse à prendre les projets à cœur,
+              à m’investir pleinement et à toujours chercher à faire les choses avec sincérité.
+            </p>
+            <p>
+              Je suis aussi très extravertie : j’aime les échanges, les idées partagées et les projets menés en équipe. Même si j’apprécie
+              parfois travailler seule pour créer ou réfléchir, c’est dans le contact humain que je me sens le plus à ma place.
+            </p>
+            <p>
+              Originaire de Normandie, je me suis installée à Toulouse en août 2024 pour construire un projet professionnel qui me ressemble.
+              J’aime découvrir de nouveaux lieux, lire, voyager, faire du sport et m’inspirer de tout ce qui m’entoure.
+            </p>
+            <p>
+              Ce qui me définit le plus reste ma détermination. Quand je commence quelque chose, je vais jusqu’au bout. J’abandonne rarement,
+              et je me donne toujours les moyens d’atteindre mes objectifs.
+            </p>
+          </div>
+
+          <div class="side-notes">
+            <div class="note">
+              <strong>Ce qui m’anime</strong>
+              Créer, communiquer, transmettre une émotion et mettre en valeur un projet à travers des contenus qui ont du sens.
+            </div>
+            <div class="note">
+              <strong>Mes passions</strong>
+              Les voyages, la lecture, le sport, les découvertes, les échanges et tout ce qui nourrit ma curiosité.
+            </div>
+            <div class="note">
+              <strong>Mon objectif</strong>
+              Trouver une alternance en communication dans laquelle je pourrai apprendre, proposer, évoluer et m’investir pleinement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="parcours">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Mon parcours</h2>
+          <p>Un chemin construit avec cohérence, curiosité et beaucoup d’envie, entre études, terrain et communication.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">2025 – 2027</div>
+            <div>
+              <h3>Mastère Tourisme – Manager des Organisations</h3>
+              <p>
+                Aujourd’hui, je poursuis mon parcours à Grand Sud Formation afin d’approfondir mes compétences en communication,
+                stratégie et gestion de projet.
+              </p>
+              <div class="tags">
+                <span class="tag">Mastère</span>
+                <span class="tag">Communication</span>
+                <span class="tag">Gestion de projet</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">2024 – 2025</div>
+            <div>
+              <h3>L3 Pro NTIC appliquée au tourisme</h3>
+              <p>
+                Une année décisive durant laquelle j’ai confirmé mon attrait pour les réseaux sociaux, le web,
+                la création de contenu et la communication touristique.
+              </p>
+              <div class="tags">
+                <span class="tag">Marketing digital</span>
+                <span class="tag">Développement web</span>
+                <span class="tag">Tourisme</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-date">2022 – 2024</div>
+            <div>
+              <h3>L1 / L2 Sciences de l’éducation</h3>
+              <p>
+                Ces études m’ont apporté une vraie sensibilité humaine : compréhension des autres, relationnel,
+                écoute et envie de transmettre.
+              </p>
+              <div class="tags">
+                <span class="tag">Humain</span>
+                <span class="tag">Écoute</span>
+                <span class="tag">Pédagogie</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiences">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Mes expériences</h2>
+          <p>Des expériences variées qui montrent ma polyvalence, ma motivation et ma capacité à m’adapter.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="mini-card">
+            <h3>Atelier des Chefs</h3>
+            <p>
+              Mon alternance actuelle me permet de développer une vraie polyvalence : relation client, organisation,
+              accueil, suivi et communication.
+            </p>
+          </article>
+
+          <article class="mini-card">
+            <h3>Camping Le Rupé</h3>
+            <p>
+              Lors de mon stage, j’ai travaillé sur l’accueil client, les réservations, les devis et la création des réseaux sociaux.
+            </p>
+          </article>
+
+          <article class="mini-card">
+            <h3>2 ans de CDI étudiant</h3>
+            <p>
+              Pendant deux ans, j’ai travaillé chez Leclerc en parallèle de mes études. Une expérience qui montre ma volonté de travailler,
+              mon sérieux et mon sens des responsabilités.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="competences">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Mes compétences</h2>
+          <p>Un profil à la fois humain, créatif et rigoureux.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="mini-card">
+            <h3>Qualités humaines</h3>
+            <p>Sociable, organisée, investie, extravertie, attentive aux autres et toujours motivée à aller jusqu’au bout.</p>
+          </article>
+
+          <article class="mini-card">
+            <h3>Communication digitale</h3>
+            <p>Réseaux sociaux, création de contenu, formats courts, montage vidéo et mise en valeur d’une image de marque.</p>
+          </article>
+
+          <article class="mini-card">
+            <h3>Tourisme & relation client</h3>
+            <p>Accueil, réservations, devis, sens du service, accompagnement client et expérience concrète du terrain touristique.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="quote">
+          <p>Quand je m’engage dans quelque chose, je ne le fais jamais à moitié.</p>
+          <span>— Louise Laignel</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Me contacter</h2>
+          <p>Je recherche une alternance en communication à partir d’octobre 2026.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="mini-card">
+             <h3>Localisation</h3>
+            <p>Toulouse</p>
+          </article>
+
+          <article class="mini-card">
+            <h3>Email</h3>
+            <p>laignellouise@gmail.com</p>
+          </article>
+
+          <article class="mini-card">
+            <h3>Téléphone</h3>
+            <p>07 82 35 73 44</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Portfolio de Louise Laignel • Communication • Tourisme • Création de contenu</p>
+    </div>
+  </footer>
+</body>
+</html>
